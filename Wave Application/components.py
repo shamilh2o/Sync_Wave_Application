@@ -36,8 +36,9 @@ def get_header():
     )
 
 
-def get_user_input_form():
+def get_user_input_form(q):
     items = [
+        ui.text_l(q.auth.username),
         ui.textbox(name='user_input', label='Input Text', required=True),
         ui.buttons(
             items=[
