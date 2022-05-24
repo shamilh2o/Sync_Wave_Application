@@ -1,4 +1,3 @@
-import json
 from h2o_wave import Q
 
 from components import (
@@ -27,7 +26,7 @@ async def getFileContent(q:Q):
 
     with open(q.user.file_path, 'r') as file:
         data = file.read()
-    print("File Opened")
+
     file.close()
 
     return data
@@ -38,7 +37,6 @@ async def writeFileContent(q, text):
     with open(q.user.file_path, 'a') as file:
         data = file.write("\n" + text)
 
-    print("File Wrote")
     file.close()
 
     return data

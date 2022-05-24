@@ -23,7 +23,6 @@ async def initialize_user(q: Q):
     user_id = q.auth.subject
     # If this user exists, do nothing
     if user_id in q.app.users:
-        print(q.user.user.name)
         return
 
     # Create a new user
@@ -43,6 +42,11 @@ async def initialize_client(q: Q):
     if q.client.initialized and q.args.submit_btn:
         await writeFileContent(q, q.args.user_input)
         await make_base_ui(q)
+        for val in q.app.test.values():
+            if val != q:
+                await make_base_ui(val)
+                await val.page.save()
+
         return
 
     # Crate the first view of the app
